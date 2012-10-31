@@ -19,8 +19,8 @@ bool check_palindrome(std::string subString) {
   // If they are the same then continue
   // If not then not a palindrome!
   while(end > start) {
-	if(subString[start] != subString[end])
-	  return false;
+    if(subString[start] != subString[end])
+      return false;
     start++;
     end--;
   }
@@ -43,22 +43,22 @@ int main() {
 
   // Populate Map with indexes of each character
   for(int i = 0; i != inputString.length(); i++)
-	char_map[inputString[i]].push_back(i);
+    char_map[inputString[i]].push_back(i);
   
   // For each unique same char pair, get the substring and check if it is a palindrome or not
   for(i = char_map.begin() ; i != char_map.end(); i++) {
-	for(j = (*i).second.begin(); j != (*i).second.end(); j++) {
-	  for(k = (*i).second.rbegin(); (*k) != (*j); k++) {
-		if(longestPalindrome.length() >= ((*k)-(*j)+1))
-		  break;
-		
-		subString = inputString.substr((*j), (*k)-(*j)+1);
-		if(check_palindrome(subString)) {
-		  longestPalindrome = subString;
-		  break;
-	    }  
-	  }
-	}
+    for(j = (*i).second.begin(); j != (*i).second.end(); j++) {
+      for(k = (*i).second.rbegin(); (*k) != (*j); k++) {
+        if(longestPalindrome.length() >= ((*k)-(*j)+1))
+          break;
+          
+        subString = inputString.substr((*j), (*k)-(*j)+1);
+        if(check_palindrome(subString)) {
+          longestPalindrome = subString;
+          break;
+        }  
+      }
+    }
   }
 
   std::cout << longestPalindrome << std::endl;
